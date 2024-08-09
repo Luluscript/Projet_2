@@ -29,12 +29,12 @@ link = r'https://drive.google.com/uc?id=' + link.split('/')[-2]
 df = pd.read_csv(link)
 df_copy = df.copy()
 
-st.title('Système de recommandations de films')
+st.title('NewFlix')
 st.divider()
 col1, col2, col3 = st.columns(3)
 
 with st.sidebar:
-    st.header("Choisir un film")
+    st.header("Fais ta selection")
     
     time = st.radio('Années',["All","2020's","2010's","2000's","90's","80's","70's","60's","50's","40's","30's"])
 
@@ -45,7 +45,7 @@ with st.sidebar:
     st.write("")
 
     with st.form("filters1"):
-        people = st.selectbox("Choix acteur/réalisateur/producteur", title_principals_movies['primaryName'].unique(),index=None)
+        people = st.selectbox("Choisis un nom d'acteur ", title_principals_movies['primaryName'].unique(),index=None)
         #submitted11 = st.form_submit_button("Valider choix")
         submitted12 = st.form_submit_button("Valider")
     st.write("")
@@ -53,9 +53,9 @@ with st.sidebar:
         df = title_principals_movies.loc[title_principals_movies['primaryName'] == people]
         
     with st.form("filters"):
-        movie = st.selectbox("Choix film", df["primaryTitle"].unique(),index=None)
-        submitted1 = st.form_submit_button("Calcul films similaires")
-        #submitted2 = st.form_submit_button("Afficher titres similaires")
+        movie = st.selectbox("Choisis un film", df["primaryTitle"].unique(),index=None)
+        submitted1 = st.form_submit_button("Trouve moi un film")
+        submitted2 = st.form_submit_button("Trouve moi ce titre ")
         
 
 if submitted1:
@@ -80,15 +80,15 @@ if submitted1:
     col3.subheader (df.iloc[a[0][3]]['startYear'])
     col3.image(url + df.iloc[a[0][3]]['poster_path'],use_column_width='auto')
 
-# if submitted2:
-#     df = df_copy.copy()
-#     df1 = df.loc[df['primaryTitle'].str.contains(movie, case = False)]
-#     cols = st.columns(4)
-#     for x in range (len(df1)):
-#         with cols[x % 4]:
-#             #st.subheader(df1.iloc[x,:]['primaryTitle'])
-#             st.subheader (df1.iloc[x,:]['startYear'])
-#             st.image(url + df1.iloc[x,:]['poster_path'],use_column_width='auto')
+if submitted2:
+    df = df_copy.copy()
+    df1 = df.loc[df['primaryTitle'].str.contains(movie, case = False)]
+    cols = st.columns(4)
+    for x in range (len(df1)):
+        with cols[x % 4]:
+            #st.subheader(df1.iloc[x,:]['primaryTitle'])
+            st.subheader (df1.iloc[x,:]['startYear'])
+            st.image(url + df1.iloc[x,:]['poster_path'],use_column_width='auto')
 
 if submitted12:
     df = title_principals_movies.loc[title_principals_movies['primaryName'] == people]
