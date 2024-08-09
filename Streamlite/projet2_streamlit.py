@@ -34,9 +34,20 @@ df_copy = df.copy()
 st.title('NewFlix')
 st.divider()
 col1, col2, col3 = st.columns(3)
-with col2:
-    st.image(r'https://drive.google.com/file/d/1N54BNQsuAQjO0YzbZynd6HUTWTjk4UNW/view?usp=sharing')
-
+#with col2:
+    #st.image(r'https://drive.google.com/file/d/1N54BNQsuAQjO0YzbZynd6HUTWTjk4UNW/view?usp=sharing')
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url(r'https://drive.google.com/file/d/1N54BNQsuAQjO0YzbZynd6HUTWTjk4UNW/view?usp=sharing/);
+        background-size: cover;
+        background-position: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 with st.sidebar:
