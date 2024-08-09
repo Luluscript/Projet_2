@@ -20,6 +20,8 @@ title_principals_movies_copy = title_principals_movies
 background_image_path =("Streamlite/contraste.jpg")  # Remplacez par le chemin de votre image
 st.image(background_image_path, use_column_width=True)
 
+
+
 url = 'https://image.tmdb.org/t/p/original'
 
 # link = r"C:\Users\Lulu\Documents\Git\workaround\Projet_2\CSV\df_ml.csv"
@@ -32,6 +34,10 @@ df_copy = df.copy()
 st.title('NewFlix')
 st.divider()
 col1, col2, col3 = st.columns(3)
+with col2:
+    st.image(r'https://drive.google.com/file/d/1N54BNQsuAQjO0YzbZynd6HUTWTjk4UNW/view?usp=sharing')
+
+
 
 with st.sidebar:
     st.header("Fais ta selection")
